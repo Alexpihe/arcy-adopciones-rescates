@@ -1,0 +1,15 @@
+{
+  "name": "arcy-landing-page",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Landing page estática para ARCY Adopciones y Rescates.",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "test": "playwright test",
+    "check": "node tests/static-check.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "vite": "^7.1.0"
+  }
+}

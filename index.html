@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="ARCY Adopciones y Rescates conecta perros y gatos rescatados con familias responsables dispuestas a darles una segunda oportunidad."
+    />
+    <meta name="theme-color" content="#062f73" />
+    <title>ARCY Adopciones y Rescates</title>
+    <link rel="icon" href="./assets/icons/paw.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+    <header class="site-header" data-header>
+      <div class="container header-inner">
+        <a class="brand" href="#inicio" aria-label="ARCY Adopciones y Rescates, inicio">
+          <img
+            src="./assets/images/arcy-logo-transparente.png"
+            alt="Logo de ARCY Adopciones y Rescates"
+            width="168"
+            height="141"
+          />
+          <span>ARCY</span>
+        </a>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-navigation"
+          data-menu-toggle
+        >
+          <span class="sr-only">Abrir menú de navegación</span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </button>
+
+        <nav id="site-navigation" class="site-nav" aria-label="Navegación principal" data-nav>
+          <a href="#nosotros">Sobre nosotros</a>
+          <a href="#adopciones">Perritos y gatitos</a>
+          <a href="#eventos">Próximos eventos</a>
+          <a href="#contacto">Contáctanos</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="contenido">
+      <section id="inicio" class="hero" aria-labelledby="hero-title">
+        <div class="hero-decoration hero-decoration--one" aria-hidden="true"></div>
+        <div class="hero-decoration hero-decoration--two" aria-hidden="true"></div>
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Adopción responsable de perros y gatos</p>
+            <h1 id="hero-title">Una segunda oportunidad comienza con un hogar.</h1>
+            <p class="hero-lead">
+              Conectamos animales rescatados con personas bondadosas dispuestas a ofrecerles
+              cuidado, respeto y una familia para toda la vida.
+            </p>
+            <div class="hero-actions">
+              <a class="button button--primary" href="#adopciones">Conoce a quienes esperan</a>
+              <a class="button button--secondary" href="#proceso">Conoce el proceso</a>
+            </div>
+            <ul class="hero-points" aria-label="Principios de ARCY">
+              <li>Adopción responsable</li>
+              <li>Seguimiento</li>
+              <li>Bienestar animal</li>
+            </ul>
+          </div>
+
+          <div class="hero-visual" aria-label="Identidad de ARCY Adopciones y Rescates">
+            <div class="logo-card">
+              <img
+                src="./assets/images/arcy-logo-transparente.png"
+                alt="ARCY Adopciones y Rescates: que todos tengan hogar"
+                width="640"
+                height="538"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="nosotros" class="section section--light" aria-labelledby="nosotros-title">
+        <div class="container split-layout">
+          <div>
+            <p class="eyebrow">Sobre nosotros</p>
+            <h2 id="nosotros-title">Rescatamos, cuidamos y buscamos hogares responsables.</h2>
+          </div>
+          <div class="prose">
+            <p>
+              ARCY Adopciones y Rescates trabaja para que perros y gatos rescatados tengan una
+              segunda oportunidad junto a personas comprometidas con su bienestar.
+            </p>
+            <p>
+              Nuestro proceso prioriza una adopción consciente: conocer a la familia, evaluar el
+              entorno y mantener comunicación posterior ayuda a construir vínculos duraderos y
+              seguros.
+            </p>
+          </div>
+        </div>
+
+        <div class="container values-grid" aria-label="Compromisos de adopción responsable">
+          <article class="value-card">
+            <span class="value-icon" aria-hidden="true">♡</span>
+            <h3>Respeto</h3>
+            <p>Una vida digna, segura y libre de abandono o maltrato.</p>
+          </article>
+          <article class="value-card">
+            <span class="value-icon" aria-hidden="true">⌂</span>
+            <h3>Hogar responsable</h3>
+            <p>Familias conscientes del compromiso de cuidar durante toda la vida.</p>
+          </article>
+          <article class="value-card">
+            <span class="value-icon" aria-hidden="true">✓</span>
+            <h3>Seguimiento</h3>
+            <p>Comunicación para verificar que cada adopción avance de forma adecuada.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="adopciones" class="section" aria-labelledby="adopciones-title">
+        <div class="container section-heading">
+          <div>
+            <p class="eyebrow">Perritos y gatitos</p>
+            <h2 id="adopciones-title">Conoce a quienes buscan una familia.</h2>
+          </div>
+          <p>
+            Las tarjetas se actualizarán únicamente con información y fotografías verificadas por
+            ARCY. Los espacios actuales están señalados como pendientes y no representan animales
+            disponibles.
+          </p>
+        </div>
+
+        <div class="container animal-grid" data-animal-grid aria-live="polite"></div>
+      </section>
+
+      <section id="proceso" class="section section--blue" aria-labelledby="proceso-title">
+        <div class="container process-layout">
+          <div class="process-intro">
+            <p class="eyebrow eyebrow--pink">Proceso de adopción</p>
+            <h2 id="proceso-title">Una decisión importante, paso a paso.</h2>
+            <p>
+              El contrato incluye datos del adoptante, información del animal, cuestionario de
+              evaluación, obligaciones, seguimiento y firmas.
+            </p>
+          </div>
+
+          <ol class="process-list">
+            <li>
+              <span>01</span>
+              <div>
+                <h3>Elige “Quiero adoptar”</h3>
+                <p>Abre el aviso de privacidad antes de descargar el formato.</p>
+              </div>
+            </li>
+            <li>
+              <span>02</span>
+              <div>
+                <h3>Lee y acepta el aviso</h3>
+                <p>Confirma que comprendes cómo se utilizará la información del proceso.</p>
+              </div>
+            </li>
+            <li>
+              <span>03</span>
+              <div>
+                <h3>Imprime y llena el contrato</h3>
+                <p>Completa todos los campos con información verdadera y legible.</p>
+              </div>
+            </li>
+            <li>
+              <span>04</span>
+              <div>
+                <h3>Envíalo por WhatsApp</h3>
+                <p>Escanea el documento y envíalo al 55 2329 8138 para darle seguimiento.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="eventos" class="section section--light" aria-labelledby="eventos-title">
+        <div class="container section-heading">
+          <div>
+            <p class="eyebrow">Próximos eventos</p>
+            <h2 id="eventos-title">Encuentros y jornadas de adopción.</h2>
+          </div>
+          <p>Este espacio se actualizará cuando ARCY confirme fecha, horario y ubicación.</p>
+        </div>
+
+        <div class="container empty-state">
+          <div class="empty-state-icon" aria-hidden="true">⌁</div>
+          <div>
+            <h3>Aún no hay eventos confirmados.</h3>
+            <p>Vuelve pronto o contáctanos para conocer las próximas actividades.</p>
+          </div>
+          <a class="button button--secondary" href="#contacto">Contactar a ARCY</a>
+        </div>
+      </section>
+
+      <section id="contacto" class="section contact-section" aria-labelledby="contacto-title">
+        <div class="container contact-card">
+          <div>
+            <p class="eyebrow">Contáctanos</p>
+            <h2 id="contacto-title">¿Quieres comenzar un proceso de adopción?</h2>
+            <p>
+              Escríbenos por WhatsApp. Recuerda que enviar el formato no garantiza la adopción; ARCY
+              revisará la información y dará seguimiento al proceso.
+            </p>
+          </div>
+          <div class="contact-actions">
+            <a
+              class="button button--whatsapp"
+              href="https://wa.me/525523298138?text=Hola%20ARCY%2C%20me%20interesa%20conocer%20el%20proceso%20de%20adopci%C3%B3n."
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              WhatsApp: 55 2329 8138
+            </a>
+            <button class="text-button" type="button" data-general-download>
+              Descargar formato de adopción
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <img
+            src="./assets/images/arcy-logo-transparente.png"
+            alt=""
+            width="112"
+            height="94"
+          />
+          <div>
+            <strong>ARCY Adopciones y Rescates</strong>
+            <p>Que todos tengan hogar.</p>
+          </div>
+        </div>
+        <nav aria-label="Navegación del pie de página">
+          <a href="#nosotros">Sobre nosotros</a>
+          <a href="#adopciones">Adopciones</a>
+          <a href="#eventos">Eventos</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+        <p class="footer-note">
+          Sitio informativo en preparación. La publicación requiere autorización de ARCY.
+        </p>
+      </div>
+    </footer>
+
+    <dialog class="modal" data-privacy-dialog aria-labelledby="privacy-title">
+      <form method="dialog" class="modal-panel" data-privacy-form>
+        <button class="modal-close" value="cancel" aria-label="Cerrar aviso de privacidad">×</button>
+        <p class="eyebrow">Antes de descargar</p>
+        <h2 id="privacy-title">Aviso de privacidad para el proceso de adopción</h2>
+        <div class="modal-copy">
+          <p>
+            ARCY Adopciones y Rescates utilizará los datos personales que voluntariamente incluyas
+            en el contrato para evaluar la solicitud, comunicarse contigo y dar seguimiento a una
+            eventual adopción.
+          </p>
+          <p>
+            El formato solicita datos de contacto, domicilio y respuestas relacionadas con las
+            condiciones del hogar. El sitio no recibe ni almacena el documento: tú lo descargarás y
+            decidirás enviarlo por WhatsApp al 55 2329 8138.
+          </p>
+          <p>
+            No envíes información si no estás de acuerdo con este uso. La versión definitiva del
+            aviso deberá ser validada por ARCY antes de publicar el sitio.
+          </p>
+        </div>
+        <label class="consent-check">
+          <input type="checkbox" data-privacy-consent />
+          <span>He leído y acepto el aviso de privacidad para continuar.</span>
+        </label>
+        <div class="modal-actions">
+          <button class="button button--secondary" value="cancel">Cancelar</button>
+          <button class="button button--primary" type="submit" value="accept" data-accept-privacy disabled>
+            Aceptar y descargar
+          </button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="modal modal--success" data-success-dialog aria-labelledby="success-title">
+      <div class="modal-panel">
+        <button class="modal-close" type="button" data-close-success aria-label="Cerrar indicaciones">×</button>
+        <span class="success-mark" aria-hidden="true">✓</span>
+        <h2 id="success-title">Formato descargado</h2>
+        <p>
+          Imprime y llena el formato descargado. Después, escanéalo y mándalo al siguiente WhatsApp
+          para darle seguimiento:
+        </p>
+        <a
+          class="whatsapp-number"
+          href="https://wa.me/525523298138?text=Hola%20ARCY%2C%20adjunto%20mi%20formato%20de%20adopci%C3%B3n%20para%20seguimiento."
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          55 2329 8138
+        </a>
+        <button class="button button--primary" type="button" data-close-success>Entendido</button>
+      </div>
+    </dialog>
+
+    <noscript>
+      <div class="noscript-message">
+        Para usar el flujo de descarga con aviso de privacidad, activa JavaScript. También puedes
+        descargar directamente el
+        <a href="./assets/documents/contrato-adopcion-responsable-arcy.pdf" download>contrato de adopción</a>.
+      </div>
+    </noscript>
+
+    <script defer src="./assets/js/animals.js"></script>
+    <script defer src="./assets/js/main.js"></script>
+  </body>
+</html>
