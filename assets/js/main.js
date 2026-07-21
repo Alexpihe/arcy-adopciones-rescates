@@ -61,7 +61,9 @@ function animalCardTemplate(animal) {
 function renderAnimals() {
   if (!animalGrid) return;
 
-  if (!animals.length) {
+  const catalog = Array.isArray(globalThis.animals) ? globalThis.animals : [];
+
+  if (!catalog.length) {
     animalGrid.innerHTML = `
       <div class="empty-state animal-empty-state">
         <div class="empty-state-icon" aria-hidden="true">♡</div>
@@ -73,7 +75,7 @@ function renderAnimals() {
     return;
   }
 
-  animalGrid.innerHTML = animals.map(animalCardTemplate).join("");
+  animalGrid.innerHTML = catalog.map(animalCardTemplate).join("");
 }
 
 function openPrivacyDialog(trigger, animalName = "Interés general de adopción") {
@@ -156,7 +158,11 @@ privacyForm?.addEventListener("submit", (event) => {
   if (!consentCheckbox.checked) return;
 
   downloadContract();
-  privacyDialog.close("accept");
+  if (typeof privacyDialog.close === "function") {
+    privacyDialog.close("accept");
+  } else {
+    privacyDialog.removeAttribute("open");
+  }
   window.setTimeout(openSuccessDialog, 120);
 });
 

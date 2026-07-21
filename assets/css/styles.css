@@ -1084,3 +1084,37 @@ a:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Crédito de desarrollo */
+.footer-meta {
+  display: grid;
+  justify-items: end;
+  gap: 0.75rem;
+}
+
+.agency-credit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+
+.agency-credit:hover,
+.agency-credit:focus-visible {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.55);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 760px) {
+  .footer-meta {
+    justify-items: start;
+  }
+}

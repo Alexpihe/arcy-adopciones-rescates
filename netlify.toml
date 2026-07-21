@@ -1,8 +1,11 @@
 [build]
-  publish = "."
+  base = "."
+  command = "npm run build"
+  publish = "dist"
 
 [build.environment]
   NODE_VERSION = "22"
+  NPM_FLAGS = "--no-audit --no-fund"
 
 [[headers]]
   for = "/*"

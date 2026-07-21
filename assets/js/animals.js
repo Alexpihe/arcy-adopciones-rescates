@@ -5,7 +5,7 @@
  * únicamente para mostrar la composición de las tarjetas hasta que ARCY proporcione
  * fotografías y datos verificados.
  */
-const animals = [
+globalThis.animals = [
   {
     id: "perrito-pendiente",
     species: "Perro",
