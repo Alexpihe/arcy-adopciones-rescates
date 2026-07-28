@@ -11,6 +11,7 @@ const consentCheckbox = document.querySelector("[data-privacy-consent]");
 const acceptPrivacyButton = document.querySelector("[data-accept-privacy]");
 const successDialog = document.querySelector("[data-success-dialog]");
 const generalDownloadButtons = document.querySelectorAll("[data-general-download]");
+const navDropdowns = navigation?.querySelectorAll("[data-nav-dropdown]") ?? [];
 
 let selectedAnimal = "Interés general de adopción";
 let lastTrigger = null;
@@ -120,16 +121,43 @@ function closeSuccessDialog() {
 
 renderAnimals();
 
+function closeNavDropdowns(except = null) {
+  navDropdowns.forEach((dropdown) => {
+    if (dropdown !== except) dropdown.removeAttribute("open");
+  });
+}
+
+navDropdowns.forEach((dropdown) => {
+  dropdown.addEventListener("toggle", () => {
+    if (dropdown.open) closeNavDropdowns(dropdown);
+  });
+});
+
 menuToggle?.addEventListener("click", () => {
   const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
   menuToggle.setAttribute("aria-expanded", String(!isOpen));
   navigation?.classList.toggle("is-open", !isOpen);
+  if (isOpen) closeNavDropdowns();
 });
 
 navigation?.addEventListener("click", (event) => {
   if (!(event.target instanceof HTMLAnchorElement)) return;
+  closeNavDropdowns();
   menuToggle?.setAttribute("aria-expanded", "false");
   navigation.classList.remove("is-open");
+});
+
+document.addEventListener("click", (event) => {
+  const target = event.target;
+  if (!(target instanceof Node)) return;
+  if (!navigation?.contains(target)) closeNavDropdowns();
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape") return;
+  closeNavDropdowns();
+  menuToggle?.setAttribute("aria-expanded", "false");
+  navigation?.classList.remove("is-open");
 });
 
 document.addEventListener("click", (event) => {

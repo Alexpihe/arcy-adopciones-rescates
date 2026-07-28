@@ -41,7 +41,7 @@
         </button>
 
         <nav id="site-navigation" class="site-nav" aria-label="Navegación principal" data-nav>
-          <details class="nav-dropdown">
+          <details class="nav-dropdown" data-nav-dropdown>
             <summary>Sobre nosotros</summary>
             <div class="nav-dropdown-menu">
               <a href="#quienes-somos">¿Quiénes somos?</a>
@@ -50,7 +50,16 @@
             </div>
           </details>
           <a href="#adopciones">Adoptables</a>
-          <a href="#eventos">Eventos</a>
+          <details class="nav-dropdown" data-nav-dropdown>
+            <summary>Eventos</summary>
+            <div class="nav-dropdown-menu nav-dropdown-menu--events">
+              <a href="#charlas">Charlas</a>
+              <a href="#bazares">Bazares</a>
+              <a href="#campanas-salud">Campañas de esterilización/vacunación</a>
+              <a href="#ferias-adopcion">Ferias de Adopción</a>
+              <a href="#huellaton-tizayuca">Huellatón Tizayuca</a>
+            </div>
+          </details>
           <a href="#contacto">Contáctanos</a>
         </nav>
       </div>
@@ -272,20 +281,86 @@
       </section>
 
       <section id="eventos" class="section section--light" aria-labelledby="eventos-title">
-        <div class="container section-heading">
+        <div class="container section-heading section-heading--compact">
           <div>
             <p class="eyebrow">Eventos</p>
-            <h2 id="eventos-title">Encuentros y jornadas de adopción.</h2>
+            <h2 id="eventos-title">Actividades para aprender, ayudar y adoptar.</h2>
           </div>
-          <p>Este espacio se actualizará cuando ARCY confirme fecha, horario y ubicación.</p>
+          <p>
+            Consulta las categorías de actividades de ARCY. Las fechas, horarios y ubicaciones se
+            publicarán únicamente cuando hayan sido confirmados.
+          </p>
         </div>
 
-        <div class="container empty-state">
-          <div class="empty-state-icon" aria-hidden="true">⌁</div>
-          <div>
-            <h3>Aún no hay eventos confirmados.</h3>
-            <p>Vuelve pronto o contáctanos para conocer las próximas actividades.</p>
-          </div>
+        <div class="container event-grid" aria-label="Categorías de eventos de ARCY">
+          <article id="charlas" class="event-card">
+            <span class="event-card-icon" aria-hidden="true">✦</span>
+            <div>
+              <p class="eyebrow">Concientización</p>
+              <h3>Charlas</h3>
+              <p>
+                Espacio para pláticas sobre bienestar animal, tenencia responsable, prevención del
+                abandono y cuidado de perros y gatos.
+              </p>
+              <span class="event-status">Información por confirmar</span>
+            </div>
+          </article>
+
+          <article id="bazares" class="event-card">
+            <span class="event-card-icon" aria-hidden="true">◇</span>
+            <div>
+              <p class="eyebrow">Apoyo comunitario</p>
+              <h3>Bazares</h3>
+              <p>
+                Actividades comunitarias para apoyar el rescate, la atención veterinaria y el
+                bienestar de los animales bajo resguardo de ARCY.
+              </p>
+              <span class="event-status">Información por confirmar</span>
+            </div>
+          </article>
+
+          <article id="campanas-salud" class="event-card">
+            <span class="event-card-icon" aria-hidden="true">✚</span>
+            <div>
+              <p class="eyebrow">Salud animal</p>
+              <h3>Campañas de esterilización y vacunación</h3>
+              <p>
+                Jornadas orientadas a prevenir la sobrepoblación y proteger la salud de los animales
+                mediante servicios programados con información previamente confirmada.
+              </p>
+              <span class="event-status">Información por confirmar</span>
+            </div>
+          </article>
+
+          <article id="ferias-adopcion" class="event-card">
+            <span class="event-card-icon" aria-hidden="true">♡</span>
+            <div>
+              <p class="eyebrow">Adopción responsable</p>
+              <h3>Ferias de Adopción</h3>
+              <p>
+                Encuentros para conocer animales adoptables y recibir orientación sobre el proceso
+                de adopción responsable y seguimiento.
+              </p>
+              <span class="event-status">Información por confirmar</span>
+            </div>
+          </article>
+
+          <article id="huellaton-tizayuca" class="event-card event-card--featured">
+            <span class="event-card-icon" aria-hidden="true">●</span>
+            <div>
+              <p class="eyebrow">Actividad especial</p>
+              <h3>Huellatón Tizayuca</h3>
+              <p>
+                Sección destinada a la información oficial de Huellatón Tizayuca. Los detalles se
+                agregarán cuando ARCY confirme la próxima edición.
+              </p>
+              <span class="event-status">Información por confirmar</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="container event-contact-note">
+          <p>¿Quieres conocer las próximas actividades o colaborar en alguna de ellas?</p>
           <a class="button button--secondary" href="#contacto">Contactar a ARCY</a>
         </div>
       </section>
@@ -418,7 +493,11 @@
           <section class="footer-menu">
             <h2>Eventos</h2>
             <ul>
-              <li><a href="#eventos">Próximos eventos</a></li>
+              <li><a href="#charlas">Charlas</a></li>
+              <li><a href="#bazares">Bazares</a></li>
+              <li><a href="#campanas-salud">Esterilización y vacunación</a></li>
+              <li><a href="#ferias-adopcion">Ferias de Adopción</a></li>
+              <li><a href="#huellaton-tizayuca">Huellatón Tizayuca</a></li>
             </ul>
           </section>
           <section class="footer-menu">
