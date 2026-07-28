@@ -41,9 +41,16 @@
         </button>
 
         <nav id="site-navigation" class="site-nav" aria-label="Navegación principal" data-nav>
-          <a href="#nosotros">Sobre nosotros</a>
-          <a href="#adopciones">Perritos y gatitos</a>
-          <a href="#eventos">Próximos eventos</a>
+          <details class="nav-dropdown">
+            <summary>Sobre nosotros</summary>
+            <div class="nav-dropdown-menu">
+              <a href="#quienes-somos">¿Quiénes somos?</a>
+              <a href="#mision-vision">Misión y Visión</a>
+              <a href="#nuestra-huella">Nuestra huella</a>
+            </div>
+          </details>
+          <a href="#adopciones">Adoptables</a>
+          <a href="#eventos">Eventos</a>
           <a href="#contacto">Contáctanos</a>
         </nav>
       </div>
@@ -86,39 +93,120 @@
       </section>
 
       <section id="nosotros" class="section section--light" aria-labelledby="nosotros-title">
-        <div class="container split-layout">
-          <div>
-            <p class="eyebrow">Sobre nosotros</p>
-            <h2 id="nosotros-title">Rescatamos, cuidamos y buscamos hogares responsables.</h2>
-          </div>
-          <div class="prose">
-            <p>
-              ARCY Adopciones y Rescates trabaja para que perros y gatos rescatados tengan una
-              segunda oportunidad junto a personas comprometidas con su bienestar.
-            </p>
-            <p>
-              Nuestro proceso prioriza una adopción consciente: conocer a la familia, evaluar el
-              entorno y mantener comunicación posterior ayuda a construir vínculos duraderos y
-              seguros.
-            </p>
-          </div>
+        <div class="container about-intro">
+          <p class="eyebrow">Sobre nosotros</p>
+          <h2 id="nosotros-title">Rescatamos, rehabilitamos y construimos nuevas oportunidades.</h2>
+          <p>
+            Nuestro trabajo nace del amor por los animales y del compromiso de acompañar cada
+            rescate hasta encontrar un hogar responsable, seguro y permanente.
+          </p>
         </div>
 
-        <div class="container values-grid" aria-label="Compromisos de adopción responsable">
-          <article class="value-card">
-            <span class="value-icon" aria-hidden="true">♡</span>
-            <h3>Respeto</h3>
-            <p>Una vida digna, segura y libre de abandono o maltrato.</p>
+        <div class="container about-sections">
+          <article id="quienes-somos" class="about-card about-card--wide">
+            <div class="about-card-heading">
+              <span class="about-number" aria-hidden="true">01</span>
+              <div>
+                <p class="eyebrow">Nuestra historia</p>
+                <h3>¿Quiénes somos?</h3>
+              </div>
+            </div>
+            <div class="justified-copy">
+              <p>
+                ARCY Adopciones y Rescates es un grupo independiente dedicado al rescate,
+                rehabilitación y búsqueda de hogares responsables para perros y gatos en situación
+                de abandono, maltrato o riesgo en Tizayuca, Hidalgo y municipios cercanos.
+              </p>
+              <p>
+                Nuestro proyecto nació como una iniciativa familiar, impulsada por el amor y el
+                compromiso hacia los animales. Lo que comenzó con el rescate de unos cuantos perros
+                y gatos se ha convertido, con el paso del tiempo, en un esfuerzo constante por
+                brindar una segunda oportunidad a quienes más lo necesitan.
+              </p>
+              <p>
+                Ofrecemos atención médica, esterilización, rehabilitación física y emocional, así
+                como un proceso de adopción responsable que garantice el bienestar de cada animal y
+                su integración a un hogar seguro y amoroso.
+              </p>
+              <p>
+                Además de rescatar animales, promovemos la tenencia responsable mediante campañas
+                de esterilización, jornadas de adopción, pláticas de concientización y actividades
+                comunitarias que fomentan el respeto y la protección de los animales. Creemos que el
+                bienestar animal es una responsabilidad compartida y trabajamos todos los días para
+                construir una comunidad más empática y comprometida con esta causa.
+              </p>
+            </div>
           </article>
-          <article class="value-card">
-            <span class="value-icon" aria-hidden="true">⌂</span>
-            <h3>Hogar responsable</h3>
-            <p>Familias conscientes del compromiso de cuidar durante toda la vida.</p>
+
+          <article id="mision-vision" class="about-card">
+            <div class="about-card-heading">
+              <span class="about-number" aria-hidden="true">02</span>
+              <div>
+                <p class="eyebrow">Nuestro propósito</p>
+                <h3>Misión y Visión</h3>
+              </div>
+            </div>
+            <div class="mission-grid">
+              <section aria-labelledby="mision-title">
+                <h4 id="mision-title">Misión</h4>
+                <p>
+                  Rescatar, rehabilitar y proteger a perros y gatos en situación de abandono o
+                  maltrato, promoviendo la adopción responsable, la esterilización y la educación
+                  sobre el bienestar animal, con el propósito de construir una comunidad más
+                  empática y comprometida con el respeto hacia toda forma de vida.
+                </p>
+              </section>
+              <section aria-labelledby="vision-title">
+                <h4 id="vision-title">Visión</h4>
+                <p>
+                  Ser una organización reconocida por su impacto en el bienestar animal,
+                  contribuyendo a disminuir el abandono y la sobrepoblación mediante programas de
+                  rescate, esterilización, educación y participación ciudadana, logrando que cada vez
+                  más animales encuentren un hogar responsable y una vida digna.
+                </p>
+              </section>
+            </div>
           </article>
-          <article class="value-card">
-            <span class="value-icon" aria-hidden="true">✓</span>
-            <h3>Seguimiento</h3>
-            <p>Comunicación para verificar que cada adopción avance de forma adecuada.</p>
+
+          <article id="nuestra-huella" class="about-card">
+            <div class="about-card-heading">
+              <span class="about-number" aria-hidden="true">03</span>
+              <div>
+                <p class="eyebrow">Impacto comunitario</p>
+                <h3>Nuestra huella</h3>
+              </div>
+            </div>
+            <div class="justified-copy">
+              <p>
+                A lo largo de nuestra labor, en ARCY Adopciones y Rescates hemos transformado la
+                vida de cientos de animales gracias al esfuerzo de voluntarios, padrinos,
+                adoptantes y personas comprometidas con el bienestar animal.
+              </p>
+              <p>
+                Nuestro trabajo comprende el rescate, rehabilitación física y emocional, atención
+                veterinaria, esterilización, búsqueda de hogares responsables y acciones de
+                concientización dirigidas a la comunidad.
+              </p>
+              <p>
+                Con el paso de los años, nuestro compromiso y resultados han permitido que
+                autoridades municipales reconozcan la labor que realizamos. En el municipio de
+                Tolcayuca, Hidalgo, las autoridades ya conocen nuestro trabajo y, en diversas
+                ocasiones, han colaborado con nosotros canalizando denuncias ciudadanas,
+                solicitando nuestro apoyo para atender casos de maltrato o abandono y coordinando
+                rescates cuando la situación lo requiere.
+              </p>
+              <p>
+                Además, participamos activamente en campañas de esterilización, jornadas de
+                adopción, pláticas de concientización y actividades comunitarias que promueven la
+                tenencia responsable y el respeto hacia los animales.
+              </p>
+              <p>
+                Cada rescate representa una nueva oportunidad de vida y cada adopción responsable
+                reafirma nuestro compromiso de seguir construyendo una comunidad más solidaria,
+                donde cada animal tenga la oportunidad de vivir con dignidad y encontrar un hogar
+                lleno de amor.
+              </p>
+            </div>
           </article>
         </div>
       </section>
@@ -126,7 +214,7 @@
       <section id="adopciones" class="section" aria-labelledby="adopciones-title">
         <div class="container section-heading">
           <div>
-            <p class="eyebrow">Perritos y gatitos</p>
+            <p class="eyebrow">Adoptables</p>
             <h2 id="adopciones-title">Conoce a quienes buscan una familia.</h2>
           </div>
           <p>
@@ -186,7 +274,7 @@
       <section id="eventos" class="section section--light" aria-labelledby="eventos-title">
         <div class="container section-heading">
           <div>
-            <p class="eyebrow">Próximos eventos</p>
+            <p class="eyebrow">Eventos</p>
             <h2 id="eventos-title">Encuentros y jornadas de adopción.</h2>
           </div>
           <p>Este espacio se actualizará cuando ARCY confirme fecha, horario y ubicación.</p>
@@ -203,38 +291,104 @@
       </section>
 
       <section id="contacto" class="section contact-section" aria-labelledby="contacto-title">
-        <div class="container contact-card">
+        <div class="container section-heading contact-heading">
           <div>
             <p class="eyebrow">Contáctanos</p>
-            <h2 id="contacto-title">¿Quieres comenzar un proceso de adopción?</h2>
-            <p>
-              Escríbenos por WhatsApp. Recuerda que enviar el formato no garantiza la adopción; ARCY
-              revisará la información y dará seguimiento al proceso.
-            </p>
+            <h2 id="contacto-title">Estamos cerca de quienes quieren ayudar.</h2>
           </div>
-          <div class="contact-actions">
-            <a
-              class="button button--whatsapp"
-              href="https://wa.me/525523298138?text=Hola%20ARCY%2C%20me%20interesa%20conocer%20el%20proceso%20de%20adopci%C3%B3n."
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              WhatsApp: 55 2329 8138
-            </a>
-            <button class="text-button" type="button" data-general-download>
-              Descargar formato de adopción
-            </button>
+          <p>
+            Comunícate con ARCY para iniciar un proceso de adopción, reportar un caso o conocer
+            cómo colaborar. La información del formato de adopción será revisada antes de continuar.
+          </p>
+        </div>
+
+        <div class="container contact-profile-card">
+          <div class="contact-profile-logo">
+            <img
+              src="./assets/images/arcy-logo-transparente.png"
+              alt="Logo de ARCY Adopciones y Rescates"
+              width="640"
+              height="538"
+            />
+          </div>
+          <div class="contact-profile-content">
+            <div class="contact-profile-title">
+              <span aria-hidden="true"></span>
+              <div>
+                <h3>ARCY Adopciones y Rescates</h3>
+                <p>Que todos tengan hogar</p>
+              </div>
+            </div>
+            <ul class="contact-list" aria-label="Medios de contacto y redes sociales de ARCY">
+              <li>
+                <span class="contact-icon" aria-hidden="true">✉</span>
+                <a href="mailto:arcyrescata@gmail.com">arcyrescata@gmail.com</a>
+              </li>
+              <li>
+                <span class="contact-icon" aria-hidden="true">◆</span>
+                <a href="https://wa.me/525523298138" target="_blank" rel="noopener noreferrer">
+                  WhatsApp: 55 2329 8138
+                </a>
+              </li>
+              <li>
+                <span class="contact-icon" aria-hidden="true">☎</span>
+                <a href="tel:+527791064451">+52 77 9106 4451</a>
+              </li>
+              <li>
+                <span class="contact-icon contact-icon--facebook" aria-hidden="true">f</span>
+                <a
+                  href="https://www.facebook.com/search/top?q=ARCY%20Adopciones%20y%20Rescates"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <strong>Facebook:</strong> ARCY Adopciones y Rescates
+                </a>
+              </li>
+              <li>
+                <span class="contact-icon contact-icon--instagram" aria-hidden="true">◎</span>
+                <a
+                  href="https://www.instagram.com/arcy_adopciones/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <strong>Instagram:</strong> @arcy_adopciones
+                </a>
+              </li>
+              <li>
+                <span class="contact-icon contact-icon--tiktok" aria-hidden="true">♪</span>
+                <a
+                  href="https://www.tiktok.com/@arcyadopciones"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <strong>TikTok:</strong> @arcyadopciones
+                </a>
+              </li>
+            </ul>
+            <div class="contact-profile-actions">
+              <a
+                class="button button--whatsapp"
+                href="https://wa.me/525523298138?text=Hola%20ARCY%2C%20me%20interesa%20conocer%20el%20proceso%20de%20adopci%C3%B3n."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Escribir por WhatsApp
+              </a>
+              <button class="text-button text-button--dark" type="button" data-general-download>
+                Descargar formato de adopción
+              </button>
+            </div>
           </div>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <div class="container footer-grid">
+      <div class="container footer-top">
         <div class="footer-brand">
           <img
             src="./assets/images/arcy-logo-transparente.png"
-            alt=""
+            alt="Logo de ARCY Adopciones y Rescates"
             width="112"
             height="94"
           />
@@ -243,29 +397,76 @@
             <p>Que todos tengan hogar.</p>
           </div>
         </div>
-        <nav aria-label="Navegación del pie de página">
-          <a href="#nosotros">Sobre nosotros</a>
-          <a href="#adopciones">Adopciones</a>
-          <a href="#eventos">Eventos</a>
-          <a href="#contacto">Contacto</a>
+
+        <nav class="footer-navigation" aria-label="Navegación del pie de página">
+          <section class="footer-menu">
+            <h2>Sobre nosotros</h2>
+            <ul>
+              <li><a href="#quienes-somos">¿Quiénes somos?</a></li>
+              <li><a href="#mision-vision">Misión y Visión</a></li>
+              <li><a href="#nuestra-huella">Nuestra huella</a></li>
+            </ul>
+          </section>
+          <section class="footer-menu">
+            <h2>Adopciones</h2>
+            <ul>
+              <li><a href="#adopciones">Adoptables</a></li>
+              <li><a href="#proceso">Proceso de adopción</a></li>
+              <li><button type="button" data-general-download>Descargar formato</button></li>
+            </ul>
+          </section>
+          <section class="footer-menu">
+            <h2>Eventos</h2>
+            <ul>
+              <li><a href="#eventos">Próximos eventos</a></li>
+            </ul>
+          </section>
+          <section class="footer-menu">
+            <h2>Contacto</h2>
+            <ul>
+              <li><a href="mailto:arcyrescata@gmail.com">Correo electrónico</a></li>
+              <li><a href="https://wa.me/525523298138" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+              <li><a href="tel:+527791064451">Teléfono</a></li>
+            </ul>
+          </section>
         </nav>
-        <div class="footer-meta">
-          <p class="footer-note">
-            Sitio informativo en preparación. La publicación requiere autorización de ARCY.
-          </p>
-          <div style="display: inline-flex; align-items: center; gap: 0.55rem;">
-            <span aria-hidden="true" style="color: rgba(255, 255, 255, 0.72); font-size: 1rem;">©</span>
-            <a
-              class="agency-credit"
-              href="https://www.horizonssync.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Visitar el sitio web de Horizon Sync Agency"
-            >
-              Horizon Sync Agency · www.horizonssync.com
-            </a>
-          </div>
-        </div>
+      </div>
+
+      <div class="container footer-social" aria-label="Redes sociales de ARCY">
+        <a
+          class="social-link"
+          href="https://www.facebook.com/search/top?q=ARCY%20Adopciones%20y%20Rescates"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook de ARCY"
+        ><span aria-hidden="true">f</span>Facebook</a>
+        <a
+          class="social-link"
+          href="https://www.instagram.com/arcy_adopciones/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram de ARCY"
+        ><span aria-hidden="true">◎</span>Instagram</a>
+        <a
+          class="social-link"
+          href="https://www.tiktok.com/@arcyadopciones"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="TikTok de ARCY"
+        ><span aria-hidden="true">♪</span>TikTok</a>
+      </div>
+
+      <div class="container footer-bottom">
+        <p class="footer-note">
+          Sitio informativo en preparación. La publicación requiere autorización de ARCY.
+        </p>
+        <a
+          class="agency-credit"
+          href="https://www.horizonssyn.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visitar el sitio web de Horizon Sync Agency"
+        >Copyright Horizon Sync Agency www.horizonssyn.com</a>
       </div>
     </footer>
 
