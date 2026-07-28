@@ -1,50 +1,48 @@
 # ARCY Adopciones y Rescates
 
-Landing page estática preparada para un flujo automático **GitHub → Netlify**.
+Landing page estática preparada para el flujo **GitHub → Netlify**.
 
-## Estructura que debe quedar en la raíz de GitHub
+## Arquitectura
+
+Este proyecto no requiere React, Next.js, Vite, npm ni una carpeta `dist`.
+Netlify publica directamente el contenido de la raíz del repositorio.
+
+## Estructura requerida en GitHub
 
 ```text
 index.html
-package.json
-package-lock.json
 netlify.toml
-.nvmrc
-assets/
-scripts/
+robots.txt
 README.md
-PENDIENTES.md
+assets/
+  css/styles.css
+  js/animals.js
+  js/main.js
+  images/
+  icons/
+  documents/
 ```
 
-No subas `node_modules/`, `dist/`, `.netlify/` ni el archivo ZIP.
+`index.html` y `netlify.toml` deben estar directamente en la raíz del repositorio.
 
-## Validación local
+## Configuración Netlify
 
-```bash
-npm ci
-npm run check
-npm run build
-```
+El archivo `netlify.toml` define:
 
-La compilación genera `dist/index.html` y `dist/assets/`.
+- Build command: `echo 'ARCY static site ready'`
+- Publish directory: `.`
 
-## Configuración de Netlify
+No agregues un comando `npm run build` y no configures `dist` como directorio de publicación.
 
-El archivo `netlify.toml` controla la configuración y evita depender de valores anteriores del panel:
+## Actualización del repositorio
 
-- Base directory: `.`
-- Build command: `npm run build`
-- Publish directory: `dist`
-- Node.js: `22`
+1. Elimina el contenido anterior del repositorio, conservando la rama `main`.
+2. Descomprime el ZIP.
+3. Sube todos los archivos y carpetas descomprimidos a la raíz de `main`.
+4. Confirma que `index.html` aparezca en la página principal del repositorio.
+5. Realiza el commit.
+6. Netlify detectará el commit y publicará el sitio automáticamente.
 
-Conecta el repositorio `Alexpihe/arcy-adopciones-rescates`, selecciona la rama `main` y ejecuta **Clear cache and deploy site** después de reemplazar los archivos anteriores.
+## Contenido dinámico
 
-## Edición del catálogo
-
-Los animales se editan en `assets/js/animals.js`. No publiques nombres, edades, descripciones o fotografías hasta que ARCY confirme la información.
-
-## Contrato
-
-El PDF oficial está en:
-
-`assets/documents/contrato-adopcion-responsable-arcy.pdf`
+Los animales adoptables se editan en `assets/js/animals.js`. Los registros actuales son marcadores y no se presentan como animales reales.
