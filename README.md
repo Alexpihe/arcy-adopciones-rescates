@@ -1,48 +1,44 @@
 # ARCY Adopciones y Rescates
 
-Landing page estática preparada para el flujo **GitHub → Netlify**.
+Sitio web multipágina estático para ARCY, preparado para el flujo **GitHub → Netlify**.
 
-## Arquitectura
+## Páginas
 
-Este proyecto no requiere React, Next.js, Vite, npm ni una carpeta `dist`.
-Netlify publica directamente el contenido de la raíz del repositorio.
+- `index.html`: introducción de ARCY.
+- `nosotros.html`: quiénes somos, misión, visión y nuestra huella.
+- `adoptables.html`: catálogo y proceso de adopción.
+- `eventos.html`: charlas, bazares, campañas, ferias y Huellatón Tizayuca 2026.
+- `contacto.html`: información de contacto y redes sociales.
+- `404.html`: página de error.
 
-## Estructura requerida en GitHub
+## Desarrollo local
 
-```text
-index.html
-netlify.toml
-robots.txt
-README.md
-assets/
-  css/styles.css
-  js/animals.js
-  js/main.js
-  images/
-  icons/
-  documents/
+No requiere instalación ni compilación. Puede abrirse con un servidor local:
+
+```bash
+python -m http.server 8080
 ```
 
-`index.html` y `netlify.toml` deben estar directamente en la raíz del repositorio.
+Después abre `http://localhost:8080`.
 
-## Configuración Netlify
+## GitHub → Netlify
 
-El archivo `netlify.toml` define:
+1. Sube todo el contenido de esta carpeta a la raíz del repositorio.
+2. Conecta la rama `main` en Netlify.
+3. Usa `echo 'ARCY static site ready'` como **Build command**.
+4. Usa `.` como **Publish directory**.
 
-- Build command: `echo 'ARCY static site ready'`
-- Publish directory: `.`
+`netlify.toml` ya declara el directorio de publicación.
 
-No agregues un comando `npm run build` y no configures `dist` como directorio de publicación.
+## Actualización de adoptables
 
-## Actualización del repositorio
+Los datos se agregan en `assets/js/animals.js`. No se incluyen animales ficticios.
 
-1. Elimina el contenido anterior del repositorio, conservando la rama `main`.
-2. Descomprime el ZIP.
-3. Sube todos los archivos y carpetas descomprimidos a la raíz de `main`.
-4. Confirma que `index.html` aparezca en la página principal del repositorio.
-5. Realiza el commit.
-6. Netlify detectará el commit y publicará el sitio automáticamente.
+## Documentos
 
-## Contenido dinámico
+- Contrato de adopción: `assets/documents/contrato-adopcion-responsable-arcy.pdf`.
+- Proyecto Huellatón: `assets/documents/proyecto-huellaton-tizayuca-2026.pdf`.
 
-Los animales adoptables se editan en `assets/js/animals.js`. Los registros actuales son marcadores y no se presentan como animales reales.
+## Pendiente de validación
+
+El programa del PDF y el cartel proporcionado contienen diferencias de horarios y cifras. La página utiliza el programa del proyecto PDF y marca los datos sujetos a confirmación antes de una difusión definitiva.

@@ -1,28 +1,20 @@
-# Guía de reemplazo completo: GitHub → Netlify
+# Guía GitHub → Netlify
 
-## 1. Reemplazar GitHub
+## Reemplazar el repositorio
 
-En `Alexpihe/arcy-adopciones-rescates`, elimina los archivos existentes y carga el contenido descomprimido de este paquete. No subas el ZIP como archivo.
+1. Elimina los archivos anteriores del repositorio.
+2. Descomprime el ZIP entregado.
+3. Sube el contenido descomprimido directamente a la raíz.
+4. Confirma que `index.html`, `nosotros.html`, `adoptables.html`, `eventos.html`, `contacto.html` y `netlify.toml` se vean en la raíz.
+5. Haz commit en la rama `main`.
 
-La raíz debe mostrar `index.html`, `netlify.toml`, `README.md`, `robots.txt` y la carpeta `assets`.
+No subas el ZIP dentro del repositorio y no dejes una carpeta contenedora adicional.
 
-## 2. Verificar Netlify
+## Configuración en Netlify
 
-El proyecto debe estar enlazado al repositorio y a la rama `main`.
+- Production branch: `main`
+- Base directory: vacío
+- Build command: `echo 'ARCY static site ready'`
+- Publish directory: `.`
 
-El archivo `netlify.toml` controla el despliegue. La configuración efectiva es:
-
-```text
-Base directory: vacío
-Build command: echo 'ARCY static site ready'
-Publish directory: .
-Production branch: main
-```
-
-## 3. Lanzar un despliegue limpio
-
-En Netlify: `Deploys → Trigger deploy → Clear cache and deploy site`.
-
-## 4. Diagnóstico
-
-Si aparece un error, revisa que no se conserve `npm run build` ni `dist` en la configuración del proyecto. `netlify.toml` debe estar en la raíz del repositorio.
+Después del commit, Netlify desplegará automáticamente el sitio.

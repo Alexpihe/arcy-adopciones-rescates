@@ -1,210 +1,228 @@
+(() => {
+  "use strict";
 
-const CONTRACT_URL = "./assets/documents/contrato-adopcion-responsable-arcy.pdf";
-const CONTRACT_FILENAME = "Contrato-de-Adopcion-Responsable-ARCY.pdf";
+  const CONTRACT_URL = "./assets/documents/contrato-adopcion-responsable-arcy.pdf";
+  const CONTRACT_FILENAME = "Contrato-de-Adopcion-Responsable-ARCY.pdf";
 
-const menuToggle = document.querySelector("[data-menu-toggle]");
-const navigation = document.querySelector("[data-nav]");
-const animalGrid = document.querySelector("[data-animal-grid]");
-const privacyDialog = document.querySelector("[data-privacy-dialog]");
-const privacyForm = document.querySelector("[data-privacy-form]");
-const consentCheckbox = document.querySelector("[data-privacy-consent]");
-const acceptPrivacyButton = document.querySelector("[data-accept-privacy]");
-const successDialog = document.querySelector("[data-success-dialog]");
-const generalDownloadButtons = document.querySelectorAll("[data-general-download]");
-const navDropdowns = navigation?.querySelectorAll("[data-nav-dropdown]") ?? [];
+  const escapeHtml = (value) =>
+    String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
 
-let selectedAnimal = "Interés general de adopción";
-let lastTrigger = null;
+  function initNavigation() {
+    const menuToggle = document.querySelector("[data-menu-toggle]");
+    const navigation = document.querySelector("[data-navigation]");
+    const dropdowns = [...document.querySelectorAll("[data-dropdown]")];
 
-const escapeHtml = (value) =>
-  String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
+    const closeDropdowns = (except = null) => {
+      dropdowns.forEach((dropdown) => {
+        if (dropdown === except) return;
+        dropdown.classList.remove("is-open");
+        dropdown.querySelector("[data-dropdown-toggle]")?.setAttribute("aria-expanded", "false");
+      });
+    };
 
-function animalCardTemplate(animal) {
-  const speciesClass = animal.species.toLowerCase() === "gato" ? "cat" : "dog";
-  const imageMarkup = animal.image
-    ? `<img src="${escapeHtml(animal.image)}" alt="${escapeHtml(animal.name)}" loading="lazy" width="640" height="480" />`
-    : `<div class="animal-placeholder animal-placeholder--${speciesClass}" role="img" aria-label="Fotografía pendiente de ${escapeHtml(animal.species.toLowerCase())}">
-         <span aria-hidden="true">${speciesClass === "cat" ? "◇" : "♡"}</span>
-         <small>Fotografía pendiente</small>
-       </div>`;
+    menuToggle?.addEventListener("click", () => {
+      const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+      menuToggle.setAttribute("aria-expanded", String(!isOpen));
+      navigation?.classList.toggle("is-open", !isOpen);
+      if (isOpen) closeDropdowns();
+    });
 
-  return `
-    <article class="animal-card${animal.placeholder ? " animal-card--placeholder" : ""}">
-      <div class="animal-image-wrap">
-        ${imageMarkup}
-        <span class="animal-status">${animal.placeholder ? "Información pendiente" : "En adopción"}</span>
-      </div>
+    dropdowns.forEach((dropdown) => {
+      const toggle = dropdown.querySelector("[data-dropdown-toggle]");
+      toggle?.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const isOpen = dropdown.classList.contains("is-open");
+        closeDropdowns(dropdown);
+        dropdown.classList.toggle("is-open", !isOpen);
+        toggle.setAttribute("aria-expanded", String(!isOpen));
+      });
+    });
+
+    navigation?.addEventListener("click", (event) => {
+      if (!(event.target instanceof HTMLAnchorElement)) return;
+      menuToggle?.setAttribute("aria-expanded", "false");
+      navigation.classList.remove("is-open");
+      closeDropdowns();
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!(event.target instanceof Element) || !event.target.closest("[data-dropdown]")) {
+        closeDropdowns();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape") return;
+      closeDropdowns();
+      menuToggle?.setAttribute("aria-expanded", "false");
+      navigation?.classList.remove("is-open");
+    });
+  }
+
+  function animalCardTemplate(animal) {
+    const image = animal.image
+      ? `<img src="${escapeHtml(animal.image)}" alt="${escapeHtml(animal.name)}" loading="lazy" width="640" height="480">`
+      : `<div class="animal-placeholder" role="img" aria-label="Fotografía pendiente"><span aria-hidden="true">🐾</span><small>Fotografía pendiente</small></div>`;
+
+    return `<article class="animal-card" data-species="${escapeHtml(animal.species)}">
+      <div class="animal-image-wrap">${image}<span class="animal-status">En adopción</span></div>
       <div class="animal-card-body">
-        <div class="animal-meta">
-          <span>${escapeHtml(animal.species)}</span>
-          <span>${escapeHtml(animal.age)}</span>
-        </div>
+        <div class="animal-meta"><span>${escapeHtml(animal.species)}</span><span>${escapeHtml(animal.age)}</span></div>
         <h3>${escapeHtml(animal.name)}</h3>
         <p>${escapeHtml(animal.description)}</p>
-        <button
-          class="button button--primary animal-adopt-button"
-          type="button"
-          data-adopt-animal="${escapeHtml(animal.name)}"
-          aria-label="Quiero adoptar: ${escapeHtml(animal.name)}"
-        >
-          Quiero adoptar
-        </button>
+        <button class="button button--primary" type="button" data-adopt-animal="${escapeHtml(animal.name)}">Quiero adoptar</button>
       </div>
-    </article>
-  `;
-}
-
-function renderAnimals() {
-  if (!animalGrid) return;
-
-  const catalog = Array.isArray(globalThis.animals) ? globalThis.animals : [];
-
-  if (!catalog.length) {
-    animalGrid.innerHTML = `
-      <div class="empty-state animal-empty-state">
-        <div class="empty-state-icon" aria-hidden="true">♡</div>
-        <div>
-          <h3>Catálogo en preparación.</h3>
-          <p>ARCY publicará aquí los animales con datos confirmados.</p>
-        </div>
-      </div>`;
-    return;
+    </article>`;
   }
 
-  animalGrid.innerHTML = catalog.map(animalCardTemplate).join("");
-}
+  function initAnimals() {
+    const grid = document.querySelector("[data-animal-grid]");
+    if (!grid) return;
 
-function openPrivacyDialog(trigger, animalName = "Interés general de adopción") {
-  selectedAnimal = animalName;
-  lastTrigger = trigger;
-  consentCheckbox.checked = false;
-  acceptPrivacyButton.disabled = true;
+    const animals = Array.isArray(globalThis.animals) ? globalThis.animals : [];
+    const chips = [...document.querySelectorAll("[data-filter]")];
 
-  if (typeof privacyDialog.showModal === "function") {
-    privacyDialog.showModal();
-  } else {
-    privacyDialog.setAttribute("open", "");
+    const render = (filter = "all") => {
+      const filtered = filter === "all" ? animals : animals.filter((animal) => animal.species === filter);
+      if (!filtered.length) {
+        grid.innerHTML = `<div class="empty-state"><div><div class="empty-state-icon" aria-hidden="true">🐾</div><h3>Catálogo en actualización</h3><p>ARCY publicará aquí únicamente fotografías, edades y descripciones verificadas.</p><a class="button button--outline" href="https://wa.me/525523298138" target="_blank" rel="noopener noreferrer">Consultar disponibilidad por WhatsApp</a></div></div>`;
+        return;
+      }
+      grid.innerHTML = filtered.map(animalCardTemplate).join("");
+    };
+
+    chips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        chips.forEach((item) => item.classList.remove("is-active"));
+        chip.classList.add("is-active");
+        render(chip.dataset.filter || "all");
+      });
+    });
+
+    render();
   }
-}
 
-function downloadContract() {
-  const link = document.createElement("a");
-  link.href = CONTRACT_URL;
-  link.download = CONTRACT_FILENAME;
-  link.dataset.selectedAnimal = selectedAnimal;
-  document.body.append(link);
-  link.click();
-  link.remove();
-}
+  function initAdoptionFlow() {
+    const privacyDialog = document.querySelector("[data-privacy-dialog]");
+    const privacyForm = document.querySelector("[data-privacy-form]");
+    const consentCheckbox = document.querySelector("[data-privacy-consent]");
+    const acceptButton = document.querySelector("[data-accept-privacy]");
+    const successDialog = document.querySelector("[data-success-dialog]");
+    if (!(privacyDialog instanceof HTMLDialogElement) || !(successDialog instanceof HTMLDialogElement)) return;
 
-function openSuccessDialog() {
-  if (typeof successDialog.showModal === "function") {
-    successDialog.showModal();
-  } else {
-    successDialog.setAttribute("open", "");
+    let lastTrigger = null;
+
+    const openPrivacy = (trigger) => {
+      lastTrigger = trigger;
+      if (consentCheckbox instanceof HTMLInputElement) consentCheckbox.checked = false;
+      if (acceptButton instanceof HTMLButtonElement) acceptButton.disabled = true;
+      privacyDialog.showModal();
+    };
+
+    const downloadContract = () => {
+      const link = document.createElement("a");
+      link.href = CONTRACT_URL;
+      link.download = CONTRACT_FILENAME;
+      document.body.append(link);
+      link.click();
+      link.remove();
+    };
+
+    document.addEventListener("click", (event) => {
+      if (!(event.target instanceof Element)) return;
+      const trigger = event.target.closest("[data-general-download], [data-adopt-animal]");
+      if (trigger instanceof HTMLElement) openPrivacy(trigger);
+    });
+
+    consentCheckbox?.addEventListener("change", () => {
+      if (acceptButton instanceof HTMLButtonElement && consentCheckbox instanceof HTMLInputElement) {
+        acceptButton.disabled = !consentCheckbox.checked;
+      }
+    });
+
+    privacyForm?.addEventListener("submit", (event) => {
+      const submitter = event.submitter;
+      if (!(submitter instanceof HTMLButtonElement) || submitter.value !== "accept") return;
+      event.preventDefault();
+      if (!(consentCheckbox instanceof HTMLInputElement) || !consentCheckbox.checked) return;
+      downloadContract();
+      privacyDialog.close("accept");
+      window.setTimeout(() => successDialog.showModal(), 100);
+    });
+
+    document.querySelectorAll("[data-close-success]").forEach((button) => {
+      button.addEventListener("click", () => {
+        successDialog.close();
+        lastTrigger?.focus();
+      });
+    });
+
+    [privacyDialog, successDialog].forEach((dialog) => {
+      dialog.addEventListener("click", (event) => {
+        if (event.target === dialog) {
+          dialog.close();
+          lastTrigger?.focus();
+        }
+      });
+    });
   }
-}
 
-function closeSuccessDialog() {
-  if (typeof successDialog.close === "function") {
-    successDialog.close();
-  } else {
-    successDialog.removeAttribute("open");
-  }
-  lastTrigger?.focus();
-}
+  function initCountdown() {
+    const countdown = document.querySelector("[data-countdown]");
+    if (!(countdown instanceof HTMLElement)) return;
 
-renderAnimals();
+    const target = new Date(countdown.dataset.eventDate || "");
+    const end = new Date("2026-08-23T17:00:00-06:00");
+    const days = countdown.querySelector("[data-days]");
+    const hours = countdown.querySelector("[data-hours]");
+    const minutes = countdown.querySelector("[data-minutes]");
+    const seconds = countdown.querySelector("[data-seconds]");
+    const message = countdown.querySelector("[data-countdown-message]");
 
-function closeNavDropdowns(except = null) {
-  navDropdowns.forEach((dropdown) => {
-    if (dropdown !== except) dropdown.removeAttribute("open");
-  });
-}
-
-navDropdowns.forEach((dropdown) => {
-  dropdown.addEventListener("toggle", () => {
-    if (dropdown.open) closeNavDropdowns(dropdown);
-  });
-});
-
-menuToggle?.addEventListener("click", () => {
-  const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
-  menuToggle.setAttribute("aria-expanded", String(!isOpen));
-  navigation?.classList.toggle("is-open", !isOpen);
-  if (isOpen) closeNavDropdowns();
-});
-
-navigation?.addEventListener("click", (event) => {
-  if (!(event.target instanceof HTMLAnchorElement)) return;
-  closeNavDropdowns();
-  menuToggle?.setAttribute("aria-expanded", "false");
-  navigation.classList.remove("is-open");
-});
-
-document.addEventListener("click", (event) => {
-  const target = event.target;
-  if (!(target instanceof Node)) return;
-  if (!navigation?.contains(target)) closeNavDropdowns();
-});
-
-document.addEventListener("keydown", (event) => {
-  if (event.key !== "Escape") return;
-  closeNavDropdowns();
-  menuToggle?.setAttribute("aria-expanded", "false");
-  navigation?.classList.remove("is-open");
-});
-
-document.addEventListener("click", (event) => {
-  const target = event.target;
-  if (!(target instanceof Element)) return;
-
-  const adoptButton = target.closest("[data-adopt-animal]");
-  if (adoptButton instanceof HTMLButtonElement) {
-    openPrivacyDialog(adoptButton, adoptButton.dataset.adoptAnimal);
-  }
-});
-
-generalDownloadButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    openPrivacyDialog(button);
-  });
-});
-
-consentCheckbox?.addEventListener("change", () => {
-  acceptPrivacyButton.disabled = !consentCheckbox.checked;
-});
-
-privacyForm?.addEventListener("submit", (event) => {
-  const submitter = event.submitter;
-  if (!(submitter instanceof HTMLButtonElement) || submitter.value !== "accept") return;
-
-  event.preventDefault();
-  if (!consentCheckbox.checked) return;
-
-  downloadContract();
-  if (typeof privacyDialog.close === "function") {
-    privacyDialog.close("accept");
-  } else {
-    privacyDialog.removeAttribute("open");
-  }
-  window.setTimeout(openSuccessDialog, 120);
-});
-
-successDialog?.querySelectorAll("[data-close-success]").forEach((button) => {
-  button.addEventListener("click", closeSuccessDialog);
-});
-
-[privacyDialog, successDialog].forEach((dialog) => {
-  dialog?.addEventListener("click", (event) => {
-    if (event.target === dialog) {
-      dialog.close();
-      lastTrigger?.focus();
+    if (Number.isNaN(target.getTime())) {
+      if (message) message.textContent = "Fecha pendiente de confirmar.";
+      return;
     }
+
+    let timer = null;
+
+    const update = () => {
+      const now = new Date();
+      const difference = target.getTime() - now.getTime();
+
+      if (difference <= 0) {
+        [days, hours, minutes, seconds].forEach((item) => { if (item) item.textContent = "00"; });
+        if (message) message.textContent = now <= end ? "¡El Huellatón está en curso!" : "El Huellatón 2026 ha concluido. Gracias por dejar huella.";
+        if (now > end && timer !== null) window.clearInterval(timer);
+        return;
+      }
+
+      const totalSeconds = Math.floor(difference / 1000);
+      const values = {
+        days: Math.floor(totalSeconds / 86400),
+        hours: Math.floor((totalSeconds % 86400) / 3600),
+        minutes: Math.floor((totalSeconds % 3600) / 60),
+        seconds: totalSeconds % 60,
+      };
+      if (days) days.textContent = String(values.days).padStart(2, "0");
+      if (hours) hours.textContent = String(values.hours).padStart(2, "0");
+      if (minutes) minutes.textContent = String(values.minutes).padStart(2, "0");
+      if (seconds) seconds.textContent = String(values.seconds).padStart(2, "0");
+    };
+
+    update();
+    timer = window.setInterval(update, 1000);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    initNavigation();
+    initAnimals();
+    initAdoptionFlow();
+    initCountdown();
   });
-});
+})();
