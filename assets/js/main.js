@@ -66,16 +66,40 @@
 
   function animalCardTemplate(animal) {
     const image = animal.image
-      ? `<img src="${escapeHtml(animal.image)}" alt="${escapeHtml(animal.name)}" loading="lazy" width="640" height="480">`
+      ? `<img src="${escapeHtml(animal.image)}" alt="Fotografía de ${escapeHtml(animal.name)}, perrito adoptable de ARCY" loading="lazy" width="800" height="1000">`
       : `<div class="animal-placeholder" role="img" aria-label="Fotografía pendiente"><span aria-hidden="true">🐾</span><small>Fotografía pendiente</small></div>`;
 
-    return `<article class="animal-card" data-species="${escapeHtml(animal.species)}">
+    const facts = Array.isArray(animal.facts)
+      ? animal.facts.map((fact) => `<li>${escapeHtml(fact)}</li>`).join("")
+      : "";
+
+    const message = encodeURIComponent(
+      `Hola ARCY, quiero adoptar a ${animal.name}. Vi su perfil en la página de adoptables y deseo recibir información sobre el proceso de adopción.`
+    );
+    const whatsappUrl = `https://wa.me/525523298138?text=${message}`;
+
+    return `<article class="animal-card" data-species="${escapeHtml(animal.species)}" id="${escapeHtml(animal.id)}">
       <div class="animal-image-wrap">${image}<span class="animal-status">En adopción</span></div>
       <div class="animal-card-body">
-        <div class="animal-meta"><span>${escapeHtml(animal.species)}</span><span>${escapeHtml(animal.age)}</span></div>
+        <div class="animal-meta">
+          <span>${escapeHtml(animal.species)}</span>
+          <span>${escapeHtml(animal.sex)}</span>
+          <span>${escapeHtml(animal.age)}</span>
+        </div>
         <h3>${escapeHtml(animal.name)}</h3>
-        <p>${escapeHtml(animal.description)}</p>
-        <button class="button button--primary" type="button" data-adopt-animal="${escapeHtml(animal.name)}">Quiero adoptar</button>
+        <p class="animal-summary">${escapeHtml(animal.description)}</p>
+        <ul class="animal-facts" aria-label="Datos principales de ${escapeHtml(animal.name)}">${facts}</ul>
+        <details class="animal-story">
+          <summary>Conocer su historia</summary>
+          <p>${escapeHtml(animal.story)}</p>
+        </details>
+        <a
+          class="button button--whatsapp animal-whatsapp"
+          href="${whatsappUrl}"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Quiero adoptar a ${escapeHtml(animal.name)} por WhatsApp"
+        >Quiero adoptar</a>
       </div>
     </article>`;
   }
@@ -135,7 +159,7 @@
 
     document.addEventListener("click", (event) => {
       if (!(event.target instanceof Element)) return;
-      const trigger = event.target.closest("[data-general-download], [data-adopt-animal]");
+      const trigger = event.target.closest("[data-general-download]");
       if (trigger instanceof HTMLElement) openPrivacy(trigger);
     });
 
