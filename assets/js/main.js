@@ -196,6 +196,102 @@
     });
   }
 
+  function initDonationDrawer() {
+    if (document.querySelector("[data-donation-widget]")) return;
+
+    const donationWidget = document.createElement("div");
+    donationWidget.className = "donation-widget";
+    donationWidget.dataset.donationWidget = "";
+    donationWidget.innerHTML = `
+      <div class="donation-backdrop" data-donation-backdrop aria-hidden="true"></div>
+      <aside
+        class="donation-drawer"
+        id="donation-drawer"
+        data-donation-panel
+        role="dialog"
+        aria-modal="true"
+        aria-hidden="true"
+        aria-labelledby="donation-title"
+        inert
+      >
+        <button class="donation-close" type="button" data-donation-close aria-label="Cerrar panel de donaciones">×</button>
+        <p class="eyebrow">Tu ayuda deja huella</p>
+        <h2 id="donation-title">Apoya a nuestros rescatados</h2>
+        <p class="donation-intro">
+          Escanea el código QR o abre PayPal para realizar una donación en apoyo a los perros y gatos bajo resguardo de ARCY.
+        </p>
+        <a
+          class="donation-qr-link"
+          href="./assets/images/donaciones/qr-donaciones-paypal.jpeg"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Abrir el código QR de donaciones en tamaño completo"
+        >
+          <img
+            src="./assets/images/donaciones/qr-donaciones-paypal.jpeg"
+            alt="Código QR de PayPal para donar a Olga Yuridiana Cervantes Escorza"
+            width="1175"
+            height="1280"
+            loading="lazy"
+          >
+        </a>
+        <p class="donation-verification">
+          Antes de confirmar, verifica que PayPal muestre el nombre <strong>Olga Yuridiana Cervantes Escorza</strong>.
+        </p>
+        <a
+          class="button button--paypal donation-paypal-link"
+          href="https://www.paypal.com/qrcodes/p2pqrc/ZT5UL8T3SYMNL"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Donar con PayPal</a>
+        <small class="donation-note">La operación se realiza directamente en PayPal.</small>
+      </aside>
+      <button
+        class="donation-tab"
+        type="button"
+        data-donation-toggle
+        aria-expanded="false"
+        aria-controls="donation-drawer"
+      >
+        <span class="donation-tab-icon" aria-hidden="true">♥</span>
+        <span>Donar</span>
+      </button>
+    `;
+
+    document.body.append(donationWidget);
+
+    const toggle = donationWidget.querySelector("[data-donation-toggle]");
+    const panel = donationWidget.querySelector("[data-donation-panel]");
+    const close = donationWidget.querySelector("[data-donation-close]");
+    const backdrop = donationWidget.querySelector("[data-donation-backdrop]");
+    let lastFocusedElement = null;
+
+    const setOpen = (open) => {
+      donationWidget.classList.toggle("is-open", open);
+      toggle?.setAttribute("aria-expanded", String(open));
+      panel?.setAttribute("aria-hidden", String(!open));
+      panel?.toggleAttribute("inert", !open);
+      document.body.classList.toggle("donation-drawer-open", open);
+
+      if (open) {
+        lastFocusedElement = document.activeElement;
+        window.setTimeout(() => close?.focus(), 220);
+      } else if (lastFocusedElement instanceof HTMLElement) {
+        lastFocusedElement.focus();
+      }
+    };
+
+    toggle?.addEventListener("click", () => setOpen(true));
+    close?.addEventListener("click", () => setOpen(false));
+    backdrop?.addEventListener("click", () => setOpen(false));
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && donationWidget.classList.contains("is-open")) {
+        setOpen(false);
+      }
+    });
+  }
+
   function initCountdown() {
     const countdown = document.querySelector("[data-countdown]");
     if (!(countdown instanceof HTMLElement)) return;
@@ -248,5 +344,6 @@
     initAnimals();
     initAdoptionFlow();
     initCountdown();
+    initDonationDrawer();
   });
 })();

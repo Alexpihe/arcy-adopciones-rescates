@@ -397,3 +397,139 @@ main { overflow: clip; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
 }
+
+/* Pestaña deslizable de donaciones */
+.donation-widget { position: relative; z-index: 1300; }
+.donation-backdrop {
+  position: fixed;
+  z-index: 1298;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  background: rgba(3, 29, 72, .62);
+  backdrop-filter: blur(4px);
+  transition: opacity .25s ease;
+}
+.donation-drawer {
+  position: fixed;
+  z-index: 1300;
+  top: 0;
+  right: 0;
+  width: min(420px, calc(100vw - 1rem));
+  height: 100dvh;
+  padding: 1.45rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-left: 1px solid var(--border);
+  background: linear-gradient(180deg, #fff 0%, #f8faff 100%);
+  box-shadow: -24px 0 70px rgba(3, 29, 72, .22);
+  transform: translateX(105%);
+  transition: transform .28s ease;
+}
+.donation-widget.is-open .donation-backdrop { opacity: 1; pointer-events: auto; }
+.donation-widget.is-open .donation-drawer { transform: translateX(0); }
+.donation-close {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  margin: 0 0 .8rem auto;
+  border: 0;
+  border-radius: 50%;
+  color: var(--navy-900);
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+  font-size: 1.65rem;
+  line-height: 1;
+}
+.donation-drawer h2 { margin-bottom: .75rem; font-size: clamp(1.8rem, 4vw, 2.45rem); }
+.donation-intro { margin-bottom: 1rem; color: var(--muted); font-size: .96rem; }
+.donation-qr-link {
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 1.2rem;
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+}
+.donation-qr-link img { width: 100%; height: auto; }
+.donation-verification {
+  margin: 1rem 0;
+  padding: .85rem 1rem;
+  border-left: 4px solid var(--pink-500);
+  border-radius: 0 .8rem .8rem 0;
+  color: #344158;
+  background: var(--pink-100);
+  font-size: .86rem;
+}
+.button--paypal { color: var(--white); background: #0070ba; }
+.donation-paypal-link { width: 100%; }
+.donation-note { display: block; margin-top: .65rem; color: var(--muted); text-align: center; }
+.donation-tab {
+  position: fixed;
+  z-index: 1301;
+  top: 50%;
+  right: 0;
+  min-width: 58px;
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  flex-direction: column;
+  padding: 1rem .7rem;
+  border: 0;
+  border-radius: 1.1rem 0 0 1.1rem;
+  color: var(--navy-950);
+  background: linear-gradient(180deg, var(--pink-400), var(--pink-500));
+  box-shadow: -8px 10px 28px rgba(3, 29, 72, .22);
+  font-weight: 900;
+  transform: translateY(-50%);
+  transition: right .28s ease, transform .2s ease, box-shadow .2s ease;
+}
+.donation-tab:hover { transform: translateY(-50%) translateX(-4px); box-shadow: -12px 14px 32px rgba(3, 29, 72, .27); }
+.donation-tab:focus-visible, .donation-close:focus-visible, .donation-qr-link:focus-visible {
+  outline: 3px solid rgba(230, 80, 180, .42);
+  outline-offset: 3px;
+}
+.donation-tab > span:last-child { writing-mode: vertical-rl; transform: rotate(180deg); letter-spacing: .06em; }
+.donation-tab-icon { font-size: 1.2rem; line-height: 1; }
+.donation-widget.is-open .donation-tab { right: min(420px, calc(100vw - 1rem)); }
+body.donation-drawer-open { overflow: hidden; }
+
+@media (max-width: 600px) {
+  .donation-drawer {
+    top: auto;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    max-height: 88dvh;
+    padding: 1.2rem;
+    border-top: 1px solid var(--border);
+    border-left: 0;
+    border-radius: 1.5rem 1.5rem 0 0;
+    transform: translateY(105%);
+  }
+  .donation-widget.is-open .donation-drawer { transform: translateY(0); }
+  .donation-tab {
+    top: auto;
+    right: .75rem;
+    bottom: .75rem;
+    min-width: 0;
+    flex-direction: row;
+    padding: .8rem 1rem;
+    border-radius: 999px;
+    transform: none;
+  }
+  .donation-tab:hover { transform: translateY(-2px); }
+  .donation-tab > span:last-child { writing-mode: horizontal-tb; transform: none; }
+  .donation-widget.is-open .donation-tab { right: .75rem; opacity: 0; pointer-events: none; }
+  .donation-qr-link img { max-height: 48dvh; object-fit: contain; }
+}
+
+
+/* Donaciones: movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  .donation-backdrop, .donation-drawer, .donation-tab { transition: none !important; }
+}

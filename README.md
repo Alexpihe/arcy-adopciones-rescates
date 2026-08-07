@@ -42,3 +42,19 @@ Los datos se agregan en `assets/js/animals.js`. No se incluyen animales ficticio
 ## Pendiente de validación
 
 El programa del PDF y el cartel proporcionado contienen diferencias de horarios y cifras. La página utiliza el programa del proyecto PDF y marca los datos sujetos a confirmación antes de una difusión definitiva.
+
+## Catálogo de adoptables
+
+La página `adoptables.html` contiene 14 perfiles extraídos del catálogo proporcionado por ARCY. Cada ficha incluye fotografía, edad disponible, sexo, características, compatibilidad, historia de rescate y un enlace directo a WhatsApp con un mensaje personalizado para el animal seleccionado.
+
+Las fotografías optimizadas están en:
+
+```text
+assets/images/adoptables/
+```
+
+Consulta `docs/NOTAS-CATALOGO.md` para revisar datos que requieren confirmación antes de futuras actualizaciones.
+
+## Donaciones
+
+Todas las páginas incluyen una pestaña deslizable **Donar**. El panel muestra el código QR de PayPal proporcionado por ARCY, un enlace directo a PayPal y una indicación para verificar el nombre de la persona receptora antes de confirmar la operación.
