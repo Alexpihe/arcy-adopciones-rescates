@@ -1,0 +1,18 @@
+ARCY — ACTUALIZACIÓN DEL CATÁLOGO COTEJADA CONTRA EL PDF
+
+REEMPLAZAR / AGREGAR EN GITHUB EXACTAMENTE ESTAS RUTAS:
+1) Reemplazar en la raíz: adoptables.html
+2) Agregar: assets/css/adoptables-catalog-v4.css
+3) Agregar: assets/js/adoptables-catalog-v4.js
+4) Reemplazar la carpeta: assets/images/adoptables/
+
+IMPORTANTE:
+- No subas la carpeta contenedora. adoptables.html debe quedar directamente en la raíz del repositorio.
+- Esta versión NO carga assets/js/animals.js. Los 20 perfiles están escritos directamente en adoptables.html.
+  Así una versión antigua de animals.js no puede volver a mostrar el catálogo anterior.
+
+RESULTADO:
+- 13 disponibles (aparecen en PDF): Zule, Manchas, Llanita, Gufy, Yuya, Panterita,
+  Colmillo, Marcy, Margared, Lagrimitas, Lola, Luna y Gela.
+- 7 adoptados (no aparecen en PDF): Baguet, Sol, Pulgarcita, Vaqui, Eli, Canalito y Caramelo.
+- Los adoptados se muestran en gris, con sello ADOPTADO y sin enlace de WhatsApp.
