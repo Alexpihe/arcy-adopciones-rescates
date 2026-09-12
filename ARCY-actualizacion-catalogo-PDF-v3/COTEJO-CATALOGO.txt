@@ -1,0 +1,31 @@
+COTEJO DEL CATÁLOGO ARCY - PDF VIGENTE
+
+EN ADOPCIÓN (aparecen en el PDF de 14 páginas):
+1. Zule
+2. Manchas
+3. Llanita
+4. Gufy
+5. Yuya
+6. Panterita
+7. Colmillo
+8. Marcy
+9. Margared
+10. Lagrimitas
+11. Lola
+12. Luna
+13. Gela
+
+ADOPTADOS (estaban en la página anterior y ya no aparecen en el PDF vigente):
+1. Baguet
+2. Sol
+3. Pulgarcita
+4. Vaqui
+5. Eli
+6. Canalito
+7. Caramelo
+
+COMPORTAMIENTO DEL SITIO:
+- Todos los 20 perfiles se muestran en la vista 'Todos'.
+- Los 13 del PDF aparecen como 'En adopción' y conservan 'Quiero adoptar' hacia WhatsApp.
+- Los 7 que ya no aparecen en el PDF se muestran en escala de grises con sello gris 'ADOPTADO'.
+- Los 7 adoptados NO tienen enlace a WhatsApp; su control aparece deshabilitado como 'Adoptado · no disponible'.

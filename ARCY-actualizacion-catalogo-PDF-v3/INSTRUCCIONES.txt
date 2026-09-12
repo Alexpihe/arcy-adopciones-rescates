@@ -1,0 +1,8 @@
+REEMPLAZA EN GITHUB ESTAS RUTAS EXACTAS:
+/adoptables.html
+/assets/js/animals.js
+/assets/js/main.js
+/assets/css/styles.css
+/assets/images/adoptables/  (reemplazar la carpeta completa)
+
+No subas la carpeta arcy_catalogo_actualizacion_pdf_cotejada como carpeta dentro del repositorio. Copia SU CONTENIDO respetando las rutas anteriores.
