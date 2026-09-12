@@ -1,0 +1,10 @@
+ARCY - ACTUALIZACION DE CATALOGO
+
+Este paquete debe descomprimirse antes de subir a GitHub.
+Sube EL CONTENIDO de esta carpeta a la raiz del repositorio, no la carpeta contenedora.
+
+Catalogo esperado:
+EN ADOPCION (13): Zule, Manchas, Llanita, Gufy, Yuya, Panterita, Colmillo, Marcy, Margared, Lagrimitas, Lola, Luna, Gela.
+ADOPTADOS (7): Baguet, Sol, Pulgarcita, Vaqui, Eli, Canalito, Caramelo.
+
+Los adoptados muestran sello ADOPTADO y tienen deshabilitado el boton de adopcion.
